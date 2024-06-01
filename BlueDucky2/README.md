@@ -1,29 +1,6 @@
 # BlueDucky2
 
-This repository contains proof-of-concept scripts for CVE-2023-45866, CVE-2024-21306, and CVE-2024-0230. Additional details can be found in the [blog post](https://github.com/skysafe/reblog/blob/main/cve-2024-0230/README.md).
-
-| Proof of Concept | Description |
-|-|-|
-| [Android Keystroke Injection](#android-keystroke-injection) | Force-pairs a virtual Bluetooth keyboard with a vulnerable Android device and injects 10 seconds of `tab` keypresses. |
-| [Linux Keystroke Injection](#linux-keystroke-injection) | Force-pairs a virtual Bluetooth keyboard with a Linux host and injects 10 seconds of `tab` keypresses. |
-| [macOS Keystroke Injection](#macos-keystroke-injection) | Force-pairs a virtual Bluetooth keyboard with a macOS host and injects keystrokes to open a web browser and perform a Google search. |
-| [iOS Keystroke Injection](#ios-keystroke-injection) | Force-pairs a virtual Bluetooth keyboard with an iOS host and injects keystrokes to open a web browser and navigate to a URL. |
-| [Windows Keystroke Injection](windows-report.md) | Force-pairs a virtual Bluetooth keyboard with a Windows host and injects `tab` keypresses. |
-| [Magic Keyboard Link Key via Lightning Port](#magic-keyboard-link-key-via-lightning-port) | Reads the Bluetooth link key from the Lightning port on a Magic Keyboard. |
-| [Magic Keyboard Link Key via Bluetooth](#magic-keyboard-link-key-via-bluetooth) | Reads the Bluetooth link key from the unauthenticated Bluetooth HID service on the Magic Keyboard. |
-| [Magic Keyboard Link Key via USB Port on the Mac](#magic-keyboard-link-key-via-usb-port-on-mac) | Reads the Bluetooth link key for a target Magic Keyboard by spoofing the keyboard over USB to its paired Mac. |
-
-## Dependencies
-
-The scripts are known to work on an Ubuntu 22.04 host with a Broadcom-based Bluetooth adapter.
-
-I primarily used this adapter: https://www.amazon.com/Kinivo-USB-Bluetooth-4-0-Compatible/dp/B007Q45EF4
-
-```
-Bus 001 Device 026: ID 0a5c:21e8 Broadcom Corp. BCM20702A0 Bluetooth 4.0
-```
-
-Starting from a clean install of Ubuntu 22.04, the dependencies can be installed with the following commands.
+## Setup
 
 ```
 # update apt

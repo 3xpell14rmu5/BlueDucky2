@@ -1,4 +1,4 @@
-# Hi, My Name is Keyboard
+# BlueDucky2
 
 This repository contains proof-of-concept scripts for CVE-2023-45866, CVE-2024-21306, and CVE-2024-0230. Additional details can be found in the [blog post](https://github.com/skysafe/reblog/blob/main/cve-2024-0230/README.md).
 

